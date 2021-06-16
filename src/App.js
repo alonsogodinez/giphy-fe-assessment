@@ -1,22 +1,26 @@
-import logo from './logo.svg';
+import 'antd/dist/antd.css';
 import './App.css';
+import {getItems, getTrendingItem, searchItems} from "./api";
+import Searchbar from './components/SearchBar'
+import ItemsList from './components/ItemsList'
+import {useCallback, useEffect, useState} from "react";
+
 
 function App() {
+    const [items ,setItems] = useState([])
+
+    useEffect(() => {
+        getTrendingItem().then(setItems)
+    }, [])
+
+
+    const handleSubmit = useCallback((query) => searchItems({query}).then(setItems), [])
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+          <Searchbar onSubmit={handleSubmit}/>
+          <ItemsList items={items}/>
       </header>
     </div>
   );

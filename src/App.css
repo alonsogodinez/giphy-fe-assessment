@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+button, input{
+  color: #282c34;
+}
+
+.ItemsList {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  padding: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .ItemsList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    padding: 2rem;
+  }
+}
+
+.Item {
+  max-width: 100%;
+  flex-grow: 1;
+}
+
+.Item__Image {
+  max-width: 100%;
+  width: 100%;
+}
